@@ -18,4 +18,19 @@ body {
     font-size: 16px;
     line-height: 1.7;
     color: #777;
+    padding: 30px;
+}
+
+.header{
+    /* #vh:sets the header to 95 percent of the viewport height always 
+        bg-size cover: fits the image to the size of the viewport
+        bg-postion: top makes sure when the page is moved the image cascades from the top*/
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom,
+    rgba(126, 213, 111, 0.7),
+    rgba(85, 197, 122,0.7)) ,
+    url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
 }
