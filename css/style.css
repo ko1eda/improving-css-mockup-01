@@ -4,14 +4,21 @@ Light green: #7ed56f
 Medium green: #55c57a
 Dark green: #28b485
 */
-
 /* This will remove the default browser styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-/* project wide style definitions */
+
+/* 
+project wide style definitions
+Over-flow-x: hidden makes it so
+    any absolutely positioned elements 
+    whose content boxes extend outside their
+    containers will not cause a horizontal bar
+    to appear and stretch the view. 
+*/
 body {
     font-family: "Lato", "sans-serif";
     font-weight: 400;
@@ -21,6 +28,7 @@ body {
     padding: 30px;
     overflow-x:hidden;
 }
+
 /* 
 vh:sets the header to 95 percent of the viewport height always 
 bg-size cover: fits the image to the size of the viewport
@@ -55,29 +63,87 @@ tansfrom:translate():
     this centers the x and y axis on the middle of the content box
     the default would be on the outer edges of the content box, which
     would not center the box on the page. 
+top: 
+    40% not 50%- this is because the clip makes it look like the element 
+    is too low when it is exactly centered.
  */
 .heading-box{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
 .heading-primary{
     color: white;
     text-transform: uppercase;  
+    font-weight: 400;
+    backface-visibility: hidden;
 }
 /* Display block so that each one will take up one line
-    b/c spans are by default in-line elements
-    This will space each line without having to use br tags (bad) 
+        b/c spans are by default in-line elements
+        this will space each line without having to use br tags (bad).
+    animation-name & duration: name of the animation you created and its time active
+        you can do this in one line like below...
 */
 #heading-primary-main{
     display: block;
     font-size: 60px;
     letter-spacing: 35px;
+
+    animation-name: moveInLeft;
+    animation-duration: 1000ms;
+    animation-timing-function: ease-out;
+    
+    /* 
+    animation-delay: 200ms;
+    animation-iteration-count: 2; -sets the number of times the animation occurs
+     */
 }
 #heading-primary-sub{
     display: block;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 17.5px;
+    animation: moveInRight 1000ms ease-out;
 }
+
+/* 
+% {}: 
+    you can have any number of percentages
+    to specify points at which you want
+    specific things to take place in the animation.
+  translateX(): 
+    this starts from -100 px in the x direction (think of x and y graph how there can be -x vals)
+    and transitions it in to its original postion (0).
+    if you set the number to -100% it will start at the left width of the parent element (header).
+*/
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    80% {
+        transform: translateX(10px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    80% {
+        transform: translateX(10px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+
+}
+
+
+
