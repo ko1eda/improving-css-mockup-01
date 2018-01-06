@@ -146,6 +146,7 @@ text-align:
     }       
 }
 
+
 /*.btn:
     Creating own button by removing default styling
     from the anchor element.
@@ -158,6 +159,10 @@ text-align:
     this has a small -1px hover that makes the button raise on the y axis by 1px on click
     causing it to appear as it has been pressed down pn release.
     box shadow is decreased here to make it look as if the button is pressed down
+positon:
+    relative b/c we need to set the ::after psuedo element to hide behind the button,
+    by setting its absolute position to top 0 left 0, relative to the original button
+    it will be directly under it...
 */
 .btn:link, .btn:visited {
     text-transform: uppercase;
@@ -167,6 +172,7 @@ text-align:
     /* high pixel values will make rounded pill shaped edges */
     border-radius: 100px;
     transition: all 100ms ease-out;
+    position: relative;
 }
 .btn:hover{
     transform: translateY(-3px);
@@ -176,11 +182,37 @@ text-align:
     transform: translateY(-1px);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
-
 .btn-white{
     color: #777;
-    background-color: white;
-    
+    background-color: white;   
 }
-
+/*::after :
+    this is a psuedo element, esentially it hides behind the regular element,
+    then appears after a certain action is preformed, then hides again..
+height & width : 100% 
+    this is because the psuedo element is essentially treated as a child of the element
+    its applied to, so you are saying height and width are the same (100%) of its parent (.btn)
+z-index:
+    this determines which elements will be displayed when they are stacked ontop of each other
+    higher z-index elements have priority over low elements and this is LOWWW!
+*/
+.btn::after{
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 500ms ease-out;
+}
+.btn-white::after{
+    background-color: white;
+}
+.btn:hover::after{
+    transform: scale(1.5);
+    opacity: 0; 
+}
 
