@@ -35,7 +35,6 @@ bg-size cover: fits the image to the size of the viewport
 bg-postion: top makes sure when the page is moved the image cascades from the top
 */
 .header{
-    
     height: 95vh;
     background-image: linear-gradient(
         to right bottom,
@@ -66,26 +65,34 @@ tansfrom:translate():
 top: 
     40% not 50%- this is because the clip makes it look like the element 
     is too low when it is exactly centered.
+text-align:
+    This is to align the inline-block button element, since inline block elements
+    can essentially be treated as text with block-level properties 
+.h-primary{margin-bottom:}
+    this is to space the button down from the heading primary element,
+    could also put this as margin-top on the .btn-white class instead i think.
+.heading-prim-main 
+    Display: block- so that each one will take up one line
+        b/c spans are by default in-line elements
+        this will space each line without having to use br tags (bad).
+    animation-name & duration: name of the animation you created and its time active
+        you can do this in one line like below..
  */
 .heading-box{
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
+    text-align: center;
 }
 .heading-primary{
     color: white;
     text-transform: uppercase;  
     font-weight: 400;
     backface-visibility: hidden;
+    margin-bottom: 60px;
 }
-/* Display block so that each one will take up one line
-        b/c spans are by default in-line elements
-        this will space each line without having to use br tags (bad).
-    animation-name & duration: name of the animation you created and its time active
-        you can do this in one line like below...
-*/
-#heading-primary-main{
+.heading-primary-main{
     display: block;
     font-size: 60px;
     letter-spacing: 35px;
@@ -93,13 +100,8 @@ top:
     animation-name: moveInLeft;
     animation-duration: 1000ms;
     animation-timing-function: ease-out;
-    
-    /* 
-    animation-delay: 200ms;
-    animation-iteration-count: 2; -sets the number of times the animation occurs
-     */
 }
-#heading-primary-sub{
+.heading-primary-sub{
     display: block;
     font-size: 20px;
     font-weight: 700;
@@ -141,9 +143,44 @@ top:
     100%{
         opacity: 1;
         transform: translate(0);
-    }
-
+    }       
 }
 
+/*.btn:
+    Creating own button by removing default styling
+    from the anchor element.
+    inline-block: to give it block properties and keep it in flow without taking up 
+    the entire witdth of the header container
+:link,:visited:
+    pusedo class selectors that styles link 
+    before and after visit respectively
+:active:
+    this has a small -1px hover that makes the button raise on the y axis by 1px on click
+    causing it to appear as it has been pressed down pn release.
+    box shadow is decreased here to make it look as if the button is pressed down
+*/
+.btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    /* high pixel values will make rounded pill shaped edges */
+    border-radius: 100px;
+    transition: all 100ms ease-out;
+}
+.btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+.btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-white{
+    color: #777;
+    background-color: white;
+    
+}
 
 
